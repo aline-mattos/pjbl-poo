@@ -1,4 +1,8 @@
 public abstract class Aerobico {
-    int duracao;
-    float calorias_gastas;
+    private int duracao;
+    private float calorias_gastas;
+
+    public int getDuracao() {
+        return duracao;
+    }
 }
