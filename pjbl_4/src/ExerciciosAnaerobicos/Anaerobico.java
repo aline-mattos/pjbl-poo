@@ -2,19 +2,24 @@ package ExerciciosAnaerobicos;
 
 public abstract class Anaerobico /*implements Exercicio*/ {
 
+    private String nome;
     private int repeticao;
     private int tempoDescanso;
     private int serie;
-    private float peso;
+    private double peso;
     private String equipamento;
 
-    public Anaerobico(int repeticao, int tempoDescanso, int serie, float peso, String equipamento) {
+    public Anaerobico(int repeticao, int tempoDescanso, int serie, double peso, String equipamento) {
         this.repeticao = repeticao;
         this.tempoDescanso = tempoDescanso;
         this.serie = serie;
         this.peso = peso;
         this.equipamento = equipamento;
     }
+
+    public String getNome() { return nome; }
+
+    public void setNome() { this.nome = nome; }
 
     public int getRepeticao() {
         return repeticao;
@@ -37,11 +42,11 @@ public abstract class Anaerobico /*implements Exercicio*/ {
         this.serie = serie;
     }
 
-    public float getPeso() {
+    public double getPeso() {
         return peso;
     }
 
-    public void setPeso(float peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
 
