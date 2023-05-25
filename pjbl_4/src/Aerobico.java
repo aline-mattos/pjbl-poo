@@ -1,4 +1,4 @@
-public abstract class Aerobico {
+public abstract class Aerobico implements Exercicio{
 
     protected int duracaoMinutos;
     protected int intensidade;

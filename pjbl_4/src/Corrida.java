@@ -26,4 +26,8 @@ public class Corrida extends Aerobico {
         return (valorMet * pesoUsuario / 60) * duracaoMinutos;
     }
 
+    @Override
+    public void fazExercicio() {
+
+    }
 }
