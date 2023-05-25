@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d24ad4d-92a2-4a84-b1ad-a51bdd5d657f" name="Changes" comment="">
+    <list default="true" id="7d24ad4d-92a2-4a84-b1ad-a51bdd5d657f" name="Changes" comment="Criando classe concreta Corrida com a implementação do método abstrato">
+      <change afterPath="$PROJECT_DIR$/src/Corrida.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aerobico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Aerobico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/pjbl_4/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/pjbl_4/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +37,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/amand/Desktop/pjbl-poo/pjbl_4"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -46,6 +50,19 @@
       <option name="presentableId" value="Default" />
       <updated>1684792541579</updated>
     </task>
+    <task id="LOCAL-00001" summary="Adicionando construtor, atributos protected e método abstrato">
+      <created>1685056942166</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1685056942166</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adicionando construtor, atributos protected e método abstrato" />
+    <MESSAGE value="Criando classe concreta Corrida com a implementação do método abstrato" />
+    <option name="LAST_COMMIT_MESSAGE" value="Criando classe concreta Corrida com a implementação do método abstrato" />
   </component>
 </project>
