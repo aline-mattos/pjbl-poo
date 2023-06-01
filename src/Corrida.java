@@ -11,6 +11,7 @@ public class Corrida extends Aerobico {
         super(duracaoMinutos, intensidade, pesoUsuario);
     }
 
+    @Override
     public float definirMet() {
         float met = 6;
 

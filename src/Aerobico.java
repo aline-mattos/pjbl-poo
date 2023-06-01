@@ -9,6 +9,6 @@ public abstract class Aerobico implements Exercicio {
         this.intensidade = intensidade;
         this.pesoUsuario = pesoUsuario;
     }
-
+    public abstract float definirMet();
     public abstract double calcularCaloriasGastas();
 }
