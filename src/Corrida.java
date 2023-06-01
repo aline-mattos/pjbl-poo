@@ -1,5 +1,7 @@
 public class Corrida extends Aerobico {
 
+    private String tipoCorrida;
+
     /*
     Corrida leve (5 km/h): 6 METs
     Corrida moderada (8 km/h): 9 METs
@@ -7,8 +9,9 @@ public class Corrida extends Aerobico {
     Corrida intensa (15 km/h): 15 METs
     */
 
-    public Corrida(int duracaoMinutos, int intensidade, double pesoUsuario) {
+    public Corrida(int duracaoMinutos, int intensidade, double pesoUsuario, String tipoCorrida) {
         super(duracaoMinutos, intensidade, pesoUsuario);
+        this.tipoCorrida = tipoCorrida;
     }
 
     @Override
@@ -29,6 +32,6 @@ public class Corrida extends Aerobico {
 
     @Override
     public void fazExercicio() {
-
+        System.out.println("Realizando o exercício: " + tipoCorrida);
     }
 }
