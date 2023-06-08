@@ -1,24 +1,49 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Pucademia extends JPanel {
+public class Pucademia extends JFrame {
   private static final int WIDTH = 1000;
   private static final int HEIGHT = 600; 
-  private JFrame frame;
 
   public Pucademia(String nome) {
-    frame = new JFrame(nome);
-
-    JLabel title = new JLabel("Lista de Treino", JLabel.CENTER);
-    title.setFont(new Font("Roboto", Font.PLAIN, 24));
-    title.setForeground(Color.BLACK);
-
-    this.add(title);
+    this.setTitle(nome);
+    JPanel jp = new JPanel();
+    jp.setLayout(new BorderLayout());
+    jp.setBackground(Color.RED);
+    JButton button = new JButton("Volta pra Lista de Treino");
+    button.addActionListener(new MenuAction(this,new ListaExercicio(this)));
+    button.setBorderPainted(false);
+    jp.add(button);
     
-    frame.add(this);
-    frame.setSize(WIDTH, HEIGHT);
-    frame.setLocationRelativeTo(null);
-    frame.setVisible(true);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    // JPanel formulario = new Formulario(this);
+    JPanel listaExercicio = new ListaExercicio(this);
+    
+
+    this.add(listaExercicio);
+    this.setSize(WIDTH, HEIGHT);
+    this.setLocationRelativeTo(null);
+    this.setVisible(true);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
+
+  private class MenuAction implements ActionListener {
+    private JPanel panel;
+    private JFrame frame;
+
+    private MenuAction(JFrame frame, JPanel pnl) {
+      this.panel = pnl;
+      this.frame = frame;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      ChangePanel.changePanel(frame, panel);
+    }
+
+  }
+
+
 }
