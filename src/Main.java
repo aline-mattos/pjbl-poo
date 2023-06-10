@@ -1,5 +1,5 @@
 public class Main {
-    public static void main(String[] args) {
-      new Pucademia("Pucademia");
+  public static void main(String[] args) {
+      Pucademia.abrir(new ListaExercicio().mostrar());
     }
 }

@@ -1,36 +1,54 @@
 import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
 
-public class Formulario extends JPanel implements ActionListener {
+public class Formulario extends Pucademia {
 
   private JLabel label;
   private JTextField textField;
-  private JComboBox<String> mainComboBox;
   private JComboBox<String> subComboBox;
   private HashMap<String, String[]> subItems = new HashMap<>();
 
-  public Formulario(JFrame frame) {
-    this.setLayout(new GridLayout(4, 2));
+  @Override
+  public JPanel mostrar() {
+    JPanel panel = new JPanel();
+    panel.setLayout(new GridLayout(4, 2));
 
     JLabel labelTipoExercicio = new JLabel("Escolha o tipo de exercicio", SwingConstants.CENTER);
-
+    
     String[] items = { "", "Aerobico", "Anaerobico"};
-    mainComboBox = new JComboBox<>( items );
-    mainComboBox.addActionListener( this );
+    JComboBox<String> mainComboBox = new JComboBox<>( items );
+    mainComboBox.addActionListener(e -> {
+      String item = (String) mainComboBox.getSelectedItem();
+      
+      Object o = subItems.get(item);
+      
+      if (item.equals("Aerobico"))
+        label.setText("Tempo (min)");
+      else if (item.equals("Anaerobico"))
+        label.setText("Peso (kg)");
 
+      if (o == null) {
+        subComboBox.setModel(new DefaultComboBoxModel<>());
+        textField.setEnabled(false);
+        label.setText("");
+      } else {
+        textField.setEnabled(true);
+        subComboBox.setModel(new DefaultComboBoxModel<>((String[]) o));
+      }
+    });
+    
     mainComboBox.putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
-    this.add(labelTipoExercicio);
-    this.add( mainComboBox );
-
+    panel.add(labelTipoExercicio);
+    panel.add(mainComboBox);
+    
     subComboBox = new JComboBox<>();
 
     JLabel labelExercicio = new JLabel("Escolha o exercicio", SwingConstants.CENTER);
-    this.add(labelExercicio);
-    this.add( subComboBox );
-
+    panel.add(labelExercicio);
+    panel.add(subComboBox);
+    
     String[] subItems1 = { "", "Red", "Blue", "Green" };
     subItems.put(items[1], subItems1);
 
@@ -40,40 +58,16 @@ public class Formulario extends JPanel implements ActionListener {
     label = new JLabel("", SwingConstants.CENTER);
     textField = new JTextField(10);
     textField.setEnabled(false);
-    this.add(label);
-    this.add(textField);
+    panel.add(label);
+    panel.add(textField);
 
     JButton button = new JButton("Adicionar exercicio");
-    button.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        ChangePanel.changePanel(frame, new ListaExercicio(frame));
-        
-      }
-    });
+    button.addActionListener(e -> changePanel(new ListaExercicio().mostrar()));
 
-    this.add(button);
+    panel.add(button);
+    JLabel aa = new JLabel("Exercicio 1", SwingConstants.CENTER);
+    panel.add(aa);
 
+    return panel;
   }
-  
-  public void actionPerformed(ActionEvent e) {
-    String item = (String) mainComboBox.getSelectedItem();
-    System.out.println(item);
-    Object o = subItems.get(item);
-    
-    if (item.equals("Aerobico"))
-      label.setText("Peso (kg)");
-    else if (item.equals("Anaerobico"))
-      label.setText("Tempo (min)");
-
-    if (o == null) {
-      subComboBox.setModel(new DefaultComboBoxModel());
-      textField.setEnabled(false);
-      label.setText("");
-    } else {
-      textField.setEnabled(true);
-      subComboBox.setModel(new DefaultComboBoxModel((String[]) o));
-    }
-  }
-  
 }
