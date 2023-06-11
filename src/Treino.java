@@ -1,5 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Treino {
   private String nome;
@@ -16,11 +19,15 @@ public class Treino {
     return exercicios;
   }
 
-  public void addExercicio(Anaerobico exercicio) {
+  public void addExercicio(Anaerobico exercicio) throws LimiteExerciciosException {
+    if (exercicios.size() == 6)
+      throw new LimiteExerciciosException();
     exercicios.add(exercicio);
   }
   
-  public void addExercicio(Aerobico exercicio) {
+  public void addExercicio(Aerobico exercicio) throws LimiteExerciciosException {
+    if (exercicios.size() == 6)
+      throw new LimiteExerciciosException();
     exercicio.setPesoUsuario(pesoUsuario);
     exercicios.add(exercicio);
   }
@@ -37,5 +44,48 @@ public class Treino {
 
   public String getNome() {
     return nome;
+  }
+
+  public static Treino carregaTreino(String caminhoArquivo, double pesoUsuario) {
+    File file = new File(caminhoArquivo);
+    String nomeTreino = file.getName().split("\\.(?=[^\\.]+$)")[0];
+    Treino treino = new Treino(nomeTreino, pesoUsuario);
+    try {
+      Scanner scanner = new Scanner(file);
+      while (scanner.hasNextLine()) {
+        String dado = scanner.nextLine();
+        Scanner dadoSeparado = new Scanner(dado).useDelimiter(",");
+        String id = dadoSeparado.next();
+        String nomeExercicio = dadoSeparado.next();
+        int tempoDescanso = dadoSeparado.nextInt();
+        Boolean finalizado = dadoSeparado.nextBoolean();
+        if (id.startsWith("AN")) {
+          int serie = dadoSeparado.nextInt();
+          int repeticao = dadoSeparado.nextInt();
+          String equipamento = dadoSeparado.next();
+          treino.addExercicio(new Anaerobico(id, nomeExercicio, tempoDescanso, finalizado, serie, repeticao, equipamento));
+        } else if (id.startsWith("AE")) {
+          int intensidade = dadoSeparado.nextInt();
+          int duracao = dadoSeparado.nextInt();
+          treino.addExercicio(new Aerobico(id, nomeExercicio, tempoDescanso, finalizado, intensidade, duracao));
+        }
+         
+        else {
+          dadoSeparado.close();
+          throw new TipoExercicioInexistente("Tipo de exercicio não existe");
+        }
+        dadoSeparado.close();
+      }
+      scanner.close();
+      
+    } catch (FileNotFoundException e) {
+      System.out.println("Arquivo não encontrado");
+    } catch (LimiteExerciciosException e) {
+      System.out.println(e.getMessage());
+    } 
+     catch (Exception e) {
+      e.printStackTrace();
+    }
+    return treino;
   }
 }
