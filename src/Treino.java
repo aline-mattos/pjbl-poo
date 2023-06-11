@@ -18,6 +18,14 @@ public class Treino {
         exercicios.add(exercicio);
     }
 
+    public void progredirExercicio(String id, Progresso progresso) {
+        for (Exercicio exercicio: exercicios) {
+            if(exercicio.getId().equals(id) && exercicio.getClass() == Anaerobico.class) {
+                ((Anaerobico) exercicio).adicionarProgresso(progresso);
+            }
+        }
+    }
+
     public String getNome() {
         return nome;
     }

@@ -11,6 +11,8 @@ public abstract class Exercicio {
         this.finalizado = finalizado;
     }
 
+    public abstract void adicionarProgresso(Progresso progresso);
+
     public String getId() {
         return id;
     }

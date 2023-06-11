@@ -1,7 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Anaerobico extends Exercicio {
     private int serie;
     private int repeticao;
     private String equipamento;
+    private List<Progresso> progressao;
 
     public Anaerobico(String id, String nome, int tempoDescanso, Boolean finalizado, int serie, int repeticao,
                       String equipamento) {
@@ -9,6 +13,7 @@ public class Anaerobico extends Exercicio {
         this.serie = serie;
         this.repeticao = repeticao;
         this.equipamento = equipamento;
+        this.progressao = new ArrayList<>();
     }
 
     @Override
@@ -38,5 +43,14 @@ public class Anaerobico extends Exercicio {
 
     public void setEquipamento(String equipamento) {
         this.equipamento = equipamento;
+    }
+
+    public List<Progresso> getProgressao() {
+        return progressao;
+    }
+
+    @Override
+    public void adicionarProgresso(Progresso progresso) {
+        progressao.add(progresso);
     }
 }
