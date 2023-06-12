@@ -50,7 +50,7 @@ public class TelaTreino extends Pucademia {
     
     JButton calcularProgresso = new JButton("Calcular progresso");
     calcularProgresso
-      .addActionListener(e -> changePanel(new ListaTreino(Boolean.TRUE, treino.getPesoUsuario()).mostrar()));
+      .addActionListener(e -> changePanel(new TelaProgresso(treino).mostrar()));
 
     footer.add(calcularCalorias);
     footer.add(calcularProgresso);
