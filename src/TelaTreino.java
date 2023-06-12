@@ -1,7 +1,6 @@
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 
 public class TelaTreino extends Pucademia {
@@ -46,7 +45,7 @@ public class TelaTreino extends Pucademia {
 
     JButton calcularCalorias = new JButton("Calcular calorias");
     calcularCalorias
-      .addActionListener(e -> changePanel(new ListaTreino(Boolean.TRUE, treino.getPesoUsuario()).mostrar()));
+      .addActionListener(e -> showCaloriasGastas(treino.getExercicios()));
     
     JButton calcularProgresso = new JButton("Calcular progresso");
     calcularProgresso
@@ -61,5 +60,14 @@ public class TelaTreino extends Pucademia {
     panel.add(footer, "South");
     
     return panel;
+  }
+
+  private void showCaloriasGastas(List<Exercicio> exercicios) {
+    double totalCaloriasGastas = 0;
+    for (Exercicio e : exercicios) {
+      totalCaloriasGastas += e.calcularCaloriasGastas();
+    }
+    JOptionPane.showMessageDialog(null, "Total de calorias gastas " + totalCaloriasGastas);
+    System.out.println(totalCaloriasGastas);
   }
 }

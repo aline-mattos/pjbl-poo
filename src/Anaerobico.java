@@ -12,6 +12,9 @@ public class Anaerobico extends Exercicio {
 
     @Override
     public double calcularCaloriasGastas() {
+        if(!super.getFinalizado()) {
+            return 0;
+        }
         return (serie * repeticao * 2.3);
     }
 
