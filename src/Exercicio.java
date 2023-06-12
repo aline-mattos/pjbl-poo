@@ -16,6 +16,8 @@ public abstract class Exercicio {
       this.progressao = new ArrayList<>();
     }
 
+    public abstract double calcularCaloriasGastas();
+
     public void adicionarProgresso(Progresso progresso) {
       progressao.add(progresso);
     }
