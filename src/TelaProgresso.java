@@ -18,7 +18,6 @@ public class TelaProgresso extends Pucademia {
         title.setFont(new Font("Roboto", Font.PLAIN, 24));
         title.setForeground(Color.BLACK);
 
-        //panel.setLayout(new BorderLayout());
         panel.add(title, "North");
 
         populaTabela(this.treino, panel);
@@ -60,7 +59,7 @@ public class TelaProgresso extends Pucademia {
             };
             panel.add(new JScrollPane(table));
             container.add(panel);
-
+            buffer.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
