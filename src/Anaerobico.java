@@ -11,6 +11,11 @@ public class Anaerobico extends Exercicio {
     }
 
     @Override
+    public double calcularCaloriasGastas() {
+        return 0;
+    }
+
+    @Override
     public String getNome() {
       return super.getNome() + " (Anaerobico)";
     }
