@@ -1,0 +1,7 @@
+AN01,Barra fixa,45,false,4,12,Eq01
+AN02,Flexão de braço,45,false,4,12,Eq01
+AN03,Remada curvada,45,false,4,12,Eq01
+AE01,Natação,60,false,10,4
+AE02,Pular corda,60,false,10,4
+AE03,Dança aeróbica,60,false,10,4
+AN04,Supino,45,false,4,12,Eq01

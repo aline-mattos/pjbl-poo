@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,10 @@ public class Treino {
 
   public List<Exercicio> getExercicios() {
     return exercicios;
+  }
+
+  public void setExercicios(List<Exercicio> exercicios) {
+    this.exercicios = exercicios;
   }
 
   public void addExercicio(Anaerobico exercicio) throws LimiteExerciciosException {
@@ -46,46 +51,54 @@ public class Treino {
     return nome;
   }
 
-  public static Treino carregaTreino(String caminhoArquivo, double pesoUsuario) {
-    File file = new File(caminhoArquivo);
-    String nomeTreino = file.getName().split("\\.(?=[^\\.]+$)")[0];
-    Treino treino = new Treino(nomeTreino, pesoUsuario);
-    try {
-      Scanner scanner = new Scanner(file);
-      while (scanner.hasNextLine()) {
-        String dado = scanner.nextLine();
-        Scanner dadoSeparado = new Scanner(dado).useDelimiter(",");
-        String id = dadoSeparado.next();
-        String nomeExercicio = dadoSeparado.next();
-        int tempoDescanso = dadoSeparado.nextInt();
-        Boolean finalizado = dadoSeparado.nextBoolean();
-        if (id.startsWith("AN")) {
-          int serie = dadoSeparado.nextInt();
-          int repeticao = dadoSeparado.nextInt();
-          String equipamento = dadoSeparado.next();
-          treino.addExercicio(new Anaerobico(id, nomeExercicio, tempoDescanso, finalizado, serie, repeticao, equipamento));
-        } else if (id.startsWith("AE")) {
-          int intensidade = dadoSeparado.nextInt();
-          int duracao = dadoSeparado.nextInt();
-          treino.addExercicio(new Aerobico(id, nomeExercicio, tempoDescanso, finalizado, intensidade, duracao));
-        }
-         
-        else {
+  public double getPesoUsuario() {
+    return pesoUsuario;
+  }  
+
+  public static List<Treino> carregaTreinos(String caminhoDiretorio, double pesoUsuario) {
+    File folder = new File(caminhoDiretorio);
+    List<Treino> treinos =  new ArrayList<>();
+    for (File file : folder.listFiles()) {
+      String nomeTreino = file.getName().split("\\.(?=[^\\.]+$)")[0];
+      Treino treino = new Treino(nomeTreino, pesoUsuario);
+      try {
+        Scanner scanner = new Scanner(new FileInputStream(file), "UTF-8");
+        while (scanner.hasNextLine()) {
+          String dado = scanner.nextLine();
+          Scanner dadoSeparado = new Scanner(dado).useDelimiter(",");
+          String id = dadoSeparado.next();
+          String nomeExercicio = dadoSeparado.next();
+          int tempoDescanso = dadoSeparado.nextInt();
+          Boolean finalizado = dadoSeparado.nextBoolean();
+          if (id.startsWith("AN")) {
+            int serie = dadoSeparado.nextInt();
+            int repeticao = dadoSeparado.nextInt();
+            String equipamento = dadoSeparado.next();
+            treino.addExercicio(
+                new Anaerobico(id, nomeExercicio, tempoDescanso, finalizado, serie, repeticao, equipamento));
+          } else if (id.startsWith("AE")) {
+            int intensidade = dadoSeparado.nextInt();
+            int duracao = dadoSeparado.nextInt();
+            treino.addExercicio(new Aerobico(id, nomeExercicio, tempoDescanso, finalizado, intensidade, duracao));
+          }
+
+          else {
+            dadoSeparado.close();
+            throw new TipoExercicioInexistente("Tipo de exercicio não existe");
+          }
           dadoSeparado.close();
-          throw new TipoExercicioInexistente("Tipo de exercicio não existe");
         }
-        dadoSeparado.close();
+        scanner.close();
+
+      } catch (FileNotFoundException e) {
+        System.out.println("Arquivo não encontrado");
+      } catch (LimiteExerciciosException e) {
+        System.out.println(e.getMessage());
+      } catch (Exception e) {
+        e.printStackTrace();
       }
-      scanner.close();
-      
-    } catch (FileNotFoundException e) {
-      System.out.println("Arquivo não encontrado");
-    } catch (LimiteExerciciosException e) {
-      System.out.println(e.getMessage());
-    } 
-     catch (Exception e) {
-      e.printStackTrace();
+      treinos.add(treino);
     }
-    return treino;
+    return treinos;
   }
 }

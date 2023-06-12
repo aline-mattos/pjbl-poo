@@ -26,6 +26,10 @@ public abstract class Exercicio {
       return progressao;
     }
 
+    public void setProgressao(List<Progresso> progressao) {
+        this.progressao = progressao;
+    }
+
     public String getId() {
       return id;
     }
@@ -54,7 +58,7 @@ public abstract class Exercicio {
       return finalizado;
     }
 
-    public void setFinalizado(Boolean finalizado) {
-      this.finalizado = finalizado;
+    public void toggleFinalizado() {
+      this.finalizado = !finalizado;
     }
 }
