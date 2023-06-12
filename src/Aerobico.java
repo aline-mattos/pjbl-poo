@@ -10,6 +10,11 @@ public class Aerobico extends Exercicio {
   }
 
   @Override
+  public double calcularCaloriasGastas() {
+    return (intensidade * pesoUsuario / 60) * duracao;
+  }
+
+  @Override
   public String getNome() {
     return super.getNome() + " (Aeróbico)";
   }
