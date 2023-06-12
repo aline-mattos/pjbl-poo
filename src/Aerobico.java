@@ -11,7 +11,7 @@ public class Aerobico extends Exercicio {
 
   @Override
   public double calcularCaloriasGastas() {
-    if(!super.getFinalizado()) {
+    if(Boolean.FALSE.equals(super.getFinalizado())) {
       return 0;
     }
     return (intensidade * pesoUsuario / 60) * duracao;
