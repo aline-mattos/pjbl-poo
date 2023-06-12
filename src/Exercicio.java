@@ -52,7 +52,7 @@ public abstract class Exercicio {
       return finalizado;
     }
 
-    public void setFinalizado(Boolean finalizado) {
-      this.finalizado = finalizado;
+    public void toggleFinalizado() {
+      this.finalizado = !finalizado;
     }
 }
