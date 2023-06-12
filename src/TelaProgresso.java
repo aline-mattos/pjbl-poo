@@ -44,10 +44,14 @@ public class TelaProgresso extends Pucademia {
                 String linha = buffer.readLine();
                 String[] dados = linha.split(",");
 
-                dadosTabela[i][0] = dados[0];
-                dadosTabela[i][1] = dados[1];
-                dadosTabela[i][2] = dados[2];
-                i++;
+                if(i < 6) {
+                    dadosTabela[i][0] = dados[0];
+                    dadosTabela[i][1] = dados[1];
+                    dadosTabela[i][2] = dados[2];
+                    i++;
+                } else {
+                    break;
+                }
             }
             panel.setLayout(new BorderLayout());
             JTable table = new JTable(dadosTabela, header) {
