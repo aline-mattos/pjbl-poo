@@ -19,6 +19,10 @@ public class Treino {
     return exercicios;
   }
 
+  public void setExercicios(List<Exercicio> exercicios) {
+    this.exercicios = exercicios;
+  }
+
   public void addExercicio(Anaerobico exercicio) throws LimiteExerciciosException {
     if (exercicios.size() == 6)
       throw new LimiteExerciciosException();
