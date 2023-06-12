@@ -68,6 +68,5 @@ public class TelaTreino extends Pucademia {
       totalCaloriasGastas += e.calcularCaloriasGastas();
     }
     JOptionPane.showMessageDialog(null, "Total de calorias gastas " + totalCaloriasGastas);
-    System.out.println(totalCaloriasGastas);
   }
 }

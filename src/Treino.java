@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Treino {
   private String nome;
   private double pesoUsuario;
@@ -91,9 +93,9 @@ public class Treino {
         scanner.close();
 
       } catch (FileNotFoundException e) {
-        System.out.println("Arquivo não encontrado");
+        JOptionPane.showMessageDialog(null, "Arquivo não encontrado");
       } catch (LimiteExerciciosException e) {
-        System.out.println(e.getMessage());
+        JOptionPane.showMessageDialog(null,nomeTreino + "\n" + e.getMessage());
       } catch (Exception e) {
         e.printStackTrace();
       }
